@@ -29,7 +29,7 @@ const server = http.createServer((request, response) => {
         
     } 
     
-    if (request.url === '/users') {
+    if (request.url === '/?users') {
         response.statusCode = 200;
         response.statusMessage = 'OK';
         response.setHeader = 'Content Type: application/json';
@@ -38,6 +38,16 @@ const server = http.createServer((request, response) => {
 
         return;
 
+    } 
+    
+    if (request.url === '/') {
+        response.statusCode = 200;
+        response.statusMessage = 'OK';
+        response.setHeader = 'Content Type: text/plain';
+        response.write('Hello, world!');
+        response.end();
+
+        return;
     } else {
         response.statusCode = 500;
         response.statusMessage = 'Internal Server Error';
